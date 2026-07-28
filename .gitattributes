@@ -1,3 +1,5 @@
-README.md linguist-documentation=false
+* linguist-detectable=false
+
 README.md linguist-detectable=true
+README.md linguist-documentation=false
 README.md linguist-language=Bash
