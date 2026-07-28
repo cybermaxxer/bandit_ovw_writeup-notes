@@ -750,7 +750,7 @@ cat README
 | flag/command        | meaning                                                                                | why used here                                                        |
 | ------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
 | `git log`           | lists commits newest first, with hash/author/date/message                              | your starting point, commit messages here are basically confessions  |
-| `git cat-file-p`    | `-p` = "patch", shows the content                                                      | reveals exactly what content there was instead of hash               |
+| `git cat-file-p`    | `-p` = "patch", shows the content                                                      | reveals exactly what content there was, use at blob                  |
 | append only history | git never overwrites history, "removing" a line is just a new commit where it's absent | the old commit object with the real value is still fully addressable |
 
 
@@ -761,7 +761,7 @@ git clone ssh://bandit28-git@localhost/home/bandit28-git/repo
 cd repo
 cat README.md
 git log --oneline --graph --all 
-git cat-file -p #the 
+git cat-file -p #the hash
 ```
 
 ---
@@ -770,11 +770,12 @@ git cat-file -p #the
 
 **concepts**
 
-|flag/command|meaning|why used here|
-|---|---|---|
-|`git branch -a`|`-a` = "all", lists every branch, local and remote-tracking|plain `git branch` might only show local branches, missing the one you actually need|
-|`git checkout <branch>`|swaps your working directory to reflect a different branch's state|needed to actually view files as they exist on that branch|
-|readme hints|in-repo flavor text nudging you toward a non-default branch|practical clue, not a mechanism, worth reading carefully|
+| flag/command            | meaning                                                            | why used here                                                                        |
+| ----------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `git branch -a`         | `-a` = "all", lists every branch, local and remote-tracking        | plain `git branch` might only show local branches, missing the one you actually need |
+| `git checkout <branch>` | swaps your working directory to reflect a different branch's state | needed to actually view files as they exist on that branch                           |
+| readme hints            | in-repo flavor text nudging you toward a non-default branch        | practical clue, not a mechanism, worth reading carefully                             |
+
 
 why doesn't `git log` on master show commits from another branch? it only walks history reachable from your current branch, a separate branch can carry entirely different commits that never merged in.
 
@@ -795,11 +796,11 @@ cat README.md
 
 **concepts**
 
-|concept/command|meaning|why it matters here|
-|---|---|---|
-|`git tag`|lists all tags in the repo|neither `git log` nor `git branch -a` will ever surface these, a distinct reference type|
-|annotated vs lightweight tags|annotated tags store a full object with a message, like a mini commit, lightweight tags are just a bare pointer|this level's password sits in an annotated tag's message|
-|`git show <tagname>`|for an annotated tag, prints the tag's message plus whatever commit it points to|how you actually read where the password lives|
+| concept/command               | meaning                                                                                                         | why it matters here                                                                      |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `git tag`                     | lists all tags in the repo                                                                                      | neither `git log` nor `git branch -a` will ever surface these, a distinct reference type |
+| annotated vs lightweight tags | annotated tags store a full object with a message, like a mini commit, lightweight tags are just a bare pointer | this level's password sits in an annotated tag's message                                 |
+| `git show <tagname>`          | for an annotated tag, prints the tag's message plus whatever commit it points to                                | how you actually read where the password lives                                           |
 
 **solve**
 
